@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
  
+  resources :employees
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   require 'sidekiq/web'
   mount Sidekiq::Web => "/sidekiq"
   
   root 'pages#home'
+  get 'birthday', to: "employees#wish"
 end
